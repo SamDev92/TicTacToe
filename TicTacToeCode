@@ -1,0 +1,69 @@
+board = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+
+
+def print_board(board):
+    print('    ', '|', '    ', '|', '    ')
+    print('  ' + board[7], ' |  ' + board[8], '  |  ' + board[8])
+    print('    ', '|', '    ', '|', '    ')
+    print('_________________')
+    print('    ', '|', '    ', '|', '    ')
+    print('  ' + board[4], ' |  ' + board[5], '  |  ' + board[6])
+    print('    ', '|', '    ', '|', '    ')
+    print('_________________')
+    print('    ', '|', '    ', '|', '    ')
+    print('  ' + board[1], ' |  ' + board[2], '  |  ' + board[3])
+    print('    ', '|', '    ', '|', '    ')
+
+
+def player_input():
+    accept_range = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    player1 = player2 = ''
+    while player1 not in accept_range:
+        player1 = int(input('Player 1: Pick a number 1 through 9 on your keypad to put an X on the board: '))
+    while player2 not in accept_range:
+        player2 = int(input('Player 2: Pick a number 1 through 9 on your keypad to put an O on the board: '))
+
+    return player1, player2
+
+def board_placement(player1, player2):
+    board[player1] = 'X'
+    board[player2] = 'O'
+
+def game_logic(board):
+    while True:
+        if board[7] == board[player1] or board[7] == board[player2] and board[7] == board[8] and board[8] == board[9]:
+            print('You Win!')
+            break
+        elif board[4] == board[player1] or board[4] == board[player2] and board[4] == board[5] and board[5] == board[6]:
+            print('You Win!')
+            break
+        elif board[1] == board[player1] or board[1] == board[player2] and board[1] == board[2] and board[2] == board[3]:
+            print('You Win!')
+            break
+        elif board[7] == board[player1] or board[7] == board[player2] and board[7] == board[4] and board[4] == board[1]:
+            print('You Win!')
+            break
+        elif board[8] == board[player1] or board[8] == board[player2] and board[8] == board[5] and board[5] == board[2]:
+            print('You Win!')
+            break
+        elif board[9] == board[player1] or board[9] == board[player2] and board[9] == board[6] and board[6] == board[3]:
+            print('You Win!')
+            break
+        elif board[1] == board[player1] or board[1] == board[player2] and board[1] == board[5] and board[5] == board[9]:
+            print('You Win!')
+            break
+        elif board[7] == board[player1] or board[7] == board[player2] and board[7] == board[5] and board[5] == board[3]:
+            print('You Win!')
+            break
+
+game = True
+
+while game:
+    print_board(board)
+    player1, player2 = player_input()
+    board_placement(player1, player2)
+    game_logic(board)
+    
+    if game_logic(board) == True:
+        print('GAME OVER!')
+        break
